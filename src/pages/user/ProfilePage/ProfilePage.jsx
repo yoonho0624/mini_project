@@ -27,16 +27,16 @@ function ProfilePage() {
         onSuccess: (response) => {
             if (response.data.status === "success") {
                 alert("프로필 이미지가 변경되었습니다.");
-                isUploading(false)
+                setIsUploading(false)
                 onRefresh()
             } else if (response.data.status === "failed") {
                 alert(response.data.message)
-                isUploading(false)
+                setIsUploading(false)
                 return
             }
         },
         onError: (error) => {
-            isUploading(false)
+            setIsUploading(false)
             alert("문제가 발생했습니다. 다시 시도해주세요.")
             return
         }
@@ -64,7 +64,7 @@ function ProfilePage() {
                 setProgress(progressPercent)
             },
             (error) => {
-                isUploading(false)
+                setIsUploading(false)
                 alert("업로드 중 에러가 발생했습니다.");
             },
             async () => {
@@ -75,7 +75,7 @@ function ProfilePage() {
                         profileImg: downloadUrl,
                     })
                 } catch (error) {
-                    isUploading(false)
+                    setIsUploading(false)
                     alert("이미지 URL을 가져오는데 문제가 발생했습니다.")
                 }
             }
@@ -137,6 +137,13 @@ function ProfilePage() {
                     </div>
                 </div>
             </div>
+            {isUploading ? (
+                <div css={s.blurBox}>
+                    <h4>{progress}%</h4>
+                    </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 }

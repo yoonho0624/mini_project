@@ -4,12 +4,7 @@ export const container = css`
     width: 100%;
     height: 100%;
     background: #eef2ff;
-    background: linear-gradient(
-        90deg,
-        rgba(238, 242, 255, 1) 0%,
-        rgba(250, 245, 255, 1) 50%,
-        rgba(253, 242, 248, 1) 100%
-    );
+    background: linear-gradient(90deg, rgba(238, 242, 255, 1) 0%, rgba(250, 245, 255, 1) 50%, rgba(253, 242, 248, 1) 100%);
     display: flex;
     justify-content: center;
     align-items: start;
@@ -84,6 +79,13 @@ export const boardBottomBox = css`
             display: flex;
             justify-content: center;
             align-items: center;
+
+            & > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50px;
+            }
         }
 
         & > p {
@@ -100,4 +102,4 @@ export const bottomBox = css`
     & > p {
         color: #364153;
     }
-`
+`;

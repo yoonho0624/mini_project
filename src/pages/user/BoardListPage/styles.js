@@ -128,19 +128,24 @@ export const boardBottomBox = css`
         align-items: center;
         gap: 10px;
 
-        & > div {
-            width: 32px;
-            height: 32px;
-            border-radius: 50px;
-            background-color: aquamarine;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         & > p {
             font-size: 14px;
             color: #0a0a0a;
         }
     }
-`
+`;
+export const profileImgBox = css`
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;

@@ -33,7 +33,9 @@ function BoardDetailPage() {
                         <h4>{boardData.title}</h4>
                         <div css={s.boardBottomBox}>
                             <div>
-                                <div>김</div>
+                                <div>
+                                    <img src={boardData.profileImg} alt="profileImg" />
+                                </div>
                                 <p>{boardData.username}</p>
                             </div>
                             <div>

@@ -7,8 +7,7 @@ import { usePrincipalState } from "../../store/usePrincipalState";
 
 function MainHeader({ showSideBar, setShowSideBar }) {
     const navigate = useNavigate();
-    const { isLoggedIn, principal, loading, login, logout } =
-        usePrincipalState();
+    const { isLoggedIn, principal, loading, login, logout } = usePrincipalState();
 
     return (
         <div css={s.container}>
@@ -22,20 +21,13 @@ function MainHeader({ showSideBar, setShowSideBar }) {
                 {loading ? (
                     <></>
                 ) : isLoggedIn ? (
-                    <p
-                        onClick={() =>
-                            navigate(`/profile/${principal.username}`)
-                        }>
-                        {principal.username}
-                    </p>
+                    <div css={s.profileBox} onClick={() => navigate(`/profile/${principal.username}`)}>
+                        <img src={principal?.profileImg} alt="profileImg" />
+                    </div>
                 ) : (
                     <>
-                        <button onClick={() => navigate("/auth/signin")}>
-                            로그인
-                        </button>
-                        <button onClick={() => navigate("/auth/signup")}>
-                            회원가입
-                        </button>
+                        <button onClick={() => navigate("/auth/signin")}>로그인</button>
+                        <button onClick={() => navigate("/auth/signup")}>회원가입</button>
                     </>
                 )}
             </div>

@@ -7,38 +7,38 @@ import { useEffect, useState } from "react";
 import { getBoardByKeywordRequest, getBoardRequest } from "../../../apis/board/boardApis";
 
 function BoardListPage() {
-    const [boardList, setBoardList] = useState([])
-    const [searchInputValue, setSearchInputValue] = useState("")
+    const [boardList, setBoardList] = useState([]);
+    const [searchInputValue, setSearchInputValue] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
         getBoardRequest().then((response) => {
             if (response.data.status === "success") {
-                setBoardList(response.data.data)
+                setBoardList(response.data.data);
             } else if (response.data.status === "failed") {
-                alert(response.data.message)
+                alert(response.data.message);
             }
-        })
-    }, [])
+        });
+    }, []);
 
     const searchOnChangeHandler = (e) => {
-        setSearchInputValue(e.target.value)
-    }
+        setSearchInputValue(e.target.value);
+    };
 
     const searchOnKeyDownHandler = (e) => {
         if (e.key === "Enter") {
             getBoardByKeywordRequest(searchInputValue).then((response) => {
                 if (response.data.status === "success") {
-                setBoardList(response.data.data)
-            } else if (response.data.status === "failed") {
-                alert(response.data.message)
-            }
-            })
+                    setBoardList(response.data.data);
+                } else if (response.data.status === "failed") {
+                    alert(response.data.message);
+                }
+            });
         }
-    }
+    };
 
     // useEffect(() => {
-        
+
     // }, [searchInputValue])
     return (
         <div css={s.container}>
@@ -50,12 +50,7 @@ function BoardListPage() {
                     <div>게시물</div>
                     <div>
                         <LuSearch />
-                        <input
-                            type="text"
-                            placeholder="게시물 제목을 검색하세요."
-                            onChange={searchOnChangeHandler}
-                            onKeyDown={searchOnKeyDownHandler}
-                        />
+                        <input type="text" placeholder="게시물 제목을 검색하세요." onChange={searchOnChangeHandler} onKeyDown={searchOnKeyDownHandler} />
                     </div>
                 </div>
                 <div css={s.listContainer}>
@@ -64,21 +59,21 @@ function BoardListPage() {
                             <li key={board.boardId} onClick={() => navigate(`/board/${board.boardId}`)}>
                                 <div>
                                     <h4>{board.title}</h4>
-                                    <p>
-                                        {board.content}
-                                    </p>
+                                    <p>{board.content}</p>
                                 </div>
                                 <div css={s.boardBottomBox}>
                                     <div>
-                                        <div>김</div>
+                                        <div css={s.profileImgBox}>
+                                            <img src={board.profileImg} alt="profileImg" />
+                                        </div>
                                         <p>{board.username}</p>
                                     </div>
-                                <div>
-                                    <p>{board.createDt}</p>
+                                    <div>
+                                        <p>{board.createDt}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    ))}    
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div></div>
