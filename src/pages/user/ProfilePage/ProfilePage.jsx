@@ -41,6 +41,7 @@ function ProfilePage() {
             return
         }
     });
+    
 
     const onChangeFileHandler = (e) => {
         const file = e.target.files[0];
