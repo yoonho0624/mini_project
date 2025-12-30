@@ -8,12 +8,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getPrincipal } from "../apis/auth/authApis";
 import { usePrincipalState } from "../store/usePrincipalState";
 import AccountRouter from "./AccountRouter";
+import ProtectedRouter from "./ProtectedRouter";
 
 function MainRouter() {
     const accessToken = localStorage.getItem("AccessToken");
-    const { isLoggedIn, principal, loading, login, logout, setLoading } =
-        usePrincipalState();
-    const { data, isLoading } = useQuery({
+    const { isLoggedIn, principal, loading, login, logout, setLoading } = usePrincipalState();
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ["getPrincipal"],
         queryFn: getPrincipal,
         refetch: 1,
@@ -44,12 +44,23 @@ function MainRouter() {
                 <Route
                     path="/board/*"
                     element={
-                        <Layout>
-                            <BoardRouter />
-                        </Layout>
+                        <ProtectedRouter>
+                            <Layout>
+                                <BoardRouter />
+                            </Layout>
+                        </ProtectedRouter>
                     }
                 />
-                <Route path="/profile/*" element={<Layout><AccountRouter /></Layout>} />
+                <Route
+                    path="/profile/*"
+                    element={
+                        <ProtectedRouter>
+                            <Layout>
+                                <AccountRouter />
+                            </Layout>
+                        </ProtectedRouter>
+                    }
+                />
                 <Route path="/auth/*" element={<AuthRouter />} />
             </Routes>
         </>
