@@ -129,14 +129,14 @@ export const innerBox = css`
 
     & > div:nth-of-type(4) {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
         align-items: center;
         border-top: 1px solid #dbdbdb;
         padding-top: 24px;
         box-sizing: border-box;
         gap: 15px;
 
-        & > button:nth-of-type(1) {
+        & > button {
             padding: 8px 24px;
             font-size: 14px;
             background-color: white;
@@ -150,7 +150,28 @@ export const innerBox = css`
             }
         }
 
-        & > button:nth-of-type(2) {
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        & > div > button:nth-of-type(1) {
+            padding: 8px 24px;
+            font-size: 14px;
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f2f2f2;
+            }
+        }
+
+        & > div > button:nth-of-type(2) {
             padding: 8px 24px;
             font-size: 14px;
             border-radius: 8px;

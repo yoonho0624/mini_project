@@ -93,6 +93,11 @@ export const boardBottomBox = css`
             color: #0a0a0a;
         }
     }
+
+    & > div:nth-of-type(2) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const bottomBox = css`
