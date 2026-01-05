@@ -10,8 +10,10 @@ import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { changeProfileImg, emailSendRequest, withdrawRequest } from "../../../apis/account/accountApis";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getBoardListByUserIdRequest } from "../../../apis/board/boardApis";
+import { PacmanLoader } from "react-spinners";
 
 function ProfilePage() {
+    const [isSending, setIsSending] = useState(false);
     const [progress, setProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
     const navigate = useNavigate();
@@ -99,11 +101,14 @@ function ProfilePage() {
             return;
         }
 
+        setIsSending(true)
         emailSendRequest().then((response) => {
             if (response.data.status === "success") {
+                setIsSending(false)
                 alert(response.data.message);
                 return;
             } else if (response.data.status === "failed") {
+                setIsSending(false)
                 alert(response.data.message);
                 return;
             }
@@ -211,6 +216,7 @@ function ProfilePage() {
             ) : (
                 <></>
             )}
+            {isSending ? <div css={s.spinnerBox}><PacmanLoader color="pink" /></div> : <></>}
         </div>
     );
 }

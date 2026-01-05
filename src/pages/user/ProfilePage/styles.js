@@ -211,3 +211,16 @@ export const blurBox = css`
         color: #0a0a0a;
     }
 `;
+
+export const spinnerBox = css`
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+`
