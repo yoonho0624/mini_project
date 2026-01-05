@@ -49,7 +49,7 @@ function ManageBoardPage() {
                     <h4>게시물 목록 ({boardData?.length}개)</h4>
                     <ul>
                         {boardData?.map((board) => (
-                            <li key={board.boardId} css={s.boardContainer} onClick={() => navigate(`/admin/manage/user/${user.username}`)}>
+                            <li key={board.boardId} css={s.boardContainer} onClick={() => navigate(`/admin/manage/board/${board.boardId}`)}>
                                 <div>
                                     <h4>{board.title}</h4>
                                     <p>{board.content}</p>
