@@ -8,9 +8,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUserListRequest } from "../../../apis/admin/adminApis";
 import { getBoardRequest } from "../../../apis/board/boardApis";
 import { useNavigate } from "react-router-dom";
+import { usePrincipalState } from "../../../store/usePrincipalState";
 
 function DashBoardPage() {
-    const navigate = useNavigate()
+    const { logout } = usePrincipalState();
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const principalData = queryClient.getQueryData(["getPrincipal"])?.data?.data;
     const { data: userData } = useQuery({
@@ -21,7 +23,7 @@ function DashBoardPage() {
     const { data: boardData } = useQuery({
         queryKey: ["getBoardList"],
         queryFn: getBoardRequest,
-        enabled: !!principalData
+        enabled: !!principalData,
     });
 
     return (
@@ -33,8 +35,8 @@ function DashBoardPage() {
                         <p>시스템 관리 및 모니터링</p>
                     </div>
                     <div>
-                        <button>사용자 페이지</button>
-                        <button>로그아웃</button>
+                        <button onClick={() => navigate("/")}>사용자 페이지</button>
+                        <button onClick={() => logout()}>로그아웃</button>
                     </div>
                 </div>
                 <div css={s.statusContainer}>
