@@ -149,3 +149,11 @@ export const profileImgBox = css`
         object-fit: cover;
     }
 `;
+
+export const loaderBox = css`
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
